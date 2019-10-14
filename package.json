@@ -1,6 +1,6 @@
 {
   "name": "video-platform-client",
-  "homepage": "https://<USERNAME>.github.io/<REPO NAME>",
+  "homepage": "https://marcpelve.github.io/video-platform-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
