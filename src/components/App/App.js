@@ -10,6 +10,8 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
 import Home from '../Videos/Home'
+import Videos from '../Videos/Videos'
+import CreateVideo from '../Videos/CreateVideo'
 
 class App extends Component {
   constructor () {
@@ -58,6 +60,12 @@ class App extends Component {
           )} />
           <Route user={user} exact path='/' render={() => (
             <Home alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/videos' render={() => (
+            <Videos alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/create-video' render={() => (
+            <CreateVideo alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>
