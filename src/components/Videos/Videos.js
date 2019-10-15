@@ -26,7 +26,7 @@ class Videos extends Component {
     const videos = this.state.videos.map(video => (
       <Col md="2" key={video._id}>
         <a href={`#videos/${video._id}`} >
-          <img style={{ maxHeight: '200px' }} src={video.imageUrl} />
+          <img style={{ height: '250px', width: '180px' }} src={video.imageUrl} />
         </a>
         <p>{video.title} ({video.year})</p>
       </Col>
@@ -36,7 +36,7 @@ class Videos extends Component {
 
     return (
       <Fragment>
-        <Container>
+        <Container className="mt-4">
           <Row>
             {this.state.videos ? videos : 'No videos'}
           </Row>

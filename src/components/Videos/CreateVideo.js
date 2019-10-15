@@ -28,11 +28,24 @@ class CreateVideo extends Component {
     this.setState({ video: newVideo })
   }
 
+  handleSelectChange = event => {
+    const list = event.target.selectedOptions
+    const values = []
+    for (const item of list) {
+      values.push(item.value)
+    }
+
+    const field = { [event.target.name]: values }
+    const newVideo = Object.assign(this.state.video, field)
+
+    this.setState({ video: newVideo })
+  }
+
   handleSubmit = event => {
     event.preventDefault()
 
     axios.post(`${apiUrl}/videos`, { video: this.state.video })
-      .then(res => this.setState({ redirectId: res.data.video.id }))
+      .then(res => this.setState({ redirectId: res.data.video._id }))
       .catch(console.error)
   }
   render () {
@@ -42,7 +55,7 @@ class CreateVideo extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>Title</label>
+        <label className='mr-2'>Title</label>
         <input
           placeholder="Name"
           value={video.title}
@@ -51,7 +64,7 @@ class CreateVideo extends Component {
           required
         />
         <br/>
-        <label>Date Released</label>
+        <label className='mr-2'>Date Released</label>
         <input
           type="number"
           placeholder="2019"
@@ -61,7 +74,7 @@ class CreateVideo extends Component {
           required
         />
         <br/>
-        <label>Description</label>
+        <label className='mr-2'>Description</label>
         <input
           placeholder=""
           value={video.description}
@@ -70,7 +83,7 @@ class CreateVideo extends Component {
           required
         />
         <br/>
-        <label>Trailer URL</label>
+        <label className='mr-2'>Trailer URL</label>
         <input
           placeholder="youtube.com"
           value={video.videoUrl}
@@ -79,7 +92,7 @@ class CreateVideo extends Component {
           required
         />
         <br/>
-        <label>Poster URL</label>
+        <label className='mr-2'>Poster URL</label>
         <input
           placeholder="image.com/png"
           value={video.imageUrl}
@@ -88,14 +101,23 @@ class CreateVideo extends Component {
           required
         />
         <br/>
-        <label>Category</label>
-        <input
-          placeholder="Drama"
-          value={video.category}
-          name="category"
-          onChange={this.handleChange}
-          required
-        />
+        <label>Category (ctrl or cmd to select mutliple)</label>
+        <br/>
+        <select multiple name="category" id="category-select" onChange={this.handleSelectChange} style={{ height: '150px' }} >
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Crime">Crime</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Historical">Historical</option>
+          <option value="Horror">Horror</option>
+          <option value="Political">Political</option>
+          <option value="Romance">Romance</option>
+          <option value="Science fiction">Science fiction</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Western">Western</option>
+        </select>
         <br/>
         <button type="submit">Submit</button>
         <Link to="/videos">
