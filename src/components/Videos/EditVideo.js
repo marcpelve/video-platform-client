@@ -4,6 +4,7 @@ import axios from 'axios'
 import mapValues from 'lodash/mapValues'
 
 import apiUrl from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 
 class EditVideo extends Component {
   constructor (props) {
@@ -80,13 +81,30 @@ class EditVideo extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    axios({
-      url: `${apiUrl}/videos/${this.props.match.params.id}`,
-      method: 'PATCH',
-      data: { video: this.state.video }
-    })
-      .then(() => this.setState({ updated: true }))
-      .catch(console.error)
+    const { alert } = this.props
+
+    if (!this.state.video.videoUrl.includes('youtube.com')) {
+      alert({
+        heading: 'Failed to edit video',
+        message: messages.wrongUrlFormat,
+        variant: 'danger'
+      })
+    } else {
+      axios({
+        url: `${apiUrl}/videos/${this.props.match.params.id}`,
+        method: 'PATCH',
+        data: { video: this.state.video }
+      })
+        .then(() => this.setState({ updated: true }))
+        .catch(error => {
+          console.error(error)
+          alert({
+            heading: 'Failed to edit video',
+            message: messages.createVideoFailure,
+            variant: 'danger'
+          })
+        })
+    }
   }
 
   render () {
