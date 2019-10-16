@@ -41,7 +41,7 @@ class Video extends Component {
         <h3>{video.title} ({video.year})</h3>
         <p>{video.category.join(', ')}</p>
         <p>{video.description}</p>
-        <img style={{ height: '250px', width: '180px' }} src={video.imageUrl} />
+        <iframe width="1100" height="619" src={`${this.state.video.videoUrl.replace('watch?v=', 'embed/')}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         <br/>
         <div style={{ marginTop: '1rem' }}>
           <Link to={`/videos/${video._id}/edit`}><Button className='mr-2'>Update this Video</Button></Link>

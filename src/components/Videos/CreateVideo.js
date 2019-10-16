@@ -3,10 +3,11 @@ import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 
 class CreateVideo extends Component {
   constructor (props) {
-    super()
+    super(props)
 
     this.state = {
       video: {
@@ -44,10 +45,28 @@ class CreateVideo extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    axios.post(`${apiUrl}/videos`, { video: this.state.video })
-      .then(res => this.setState({ redirectId: res.data.video._id }))
-      .catch(console.error)
+    const { alert } = this.props
+
+    if (!this.state.video.videoUrl.includes('youtube.com')) {
+      alert({
+        heading: 'Failed to add video',
+        message: messages.wrongUrlFormat,
+        variant: 'danger'
+      })
+    } else {
+      axios.post(`${apiUrl}/videos`, { video: this.state.video })
+        .then(res => this.setState({ redirectId: res.data.video._id }))
+        .catch(error => {
+          console.error(error)
+          alert({
+            heading: 'Failed to add video',
+            message: messages.createVideoFailure,
+            variant: 'danger'
+          })
+        })
+    }
   }
+
   render () {
     const { video, redirectId } = this.state
 
