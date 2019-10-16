@@ -48,7 +48,13 @@ class EditVideo extends Component {
         }
         this.setState({ selected: newStateSelected })
       })
-      .catch(console.error)
+      .catch(() => {
+        alert({
+          heading: 'Failed to retrieve video',
+          message: messages.getVideoFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   handleChange = event => {
@@ -89,6 +95,7 @@ class EditVideo extends Component {
         message: messages.wrongUrlFormat,
         variant: 'danger'
       })
+      this.setState({ video: { ...this.state.video, videoUrl: '' } })
     } else {
       axios({
         url: `${apiUrl}/videos/${this.props.match.params.id}`,
@@ -96,8 +103,7 @@ class EditVideo extends Component {
         data: { video: this.state.video }
       })
         .then(() => this.setState({ updated: true }))
-        .catch(error => {
-          console.error(error)
+        .catch(() => {
           alert({
             heading: 'Failed to edit video',
             message: messages.createVideoFailure,
@@ -118,7 +124,7 @@ class EditVideo extends Component {
       <form onSubmit={this.handleSubmit}>
         <label className='mr-2'>Title</label>
         <input
-          placeholder="Name"
+          placeholder="Title"
           value={video.title}
           name="title"
           onChange={this.handleChange}
@@ -144,7 +150,7 @@ class EditVideo extends Component {
           required
         />
         <br/>
-        <label className='mr-2'>Trailer URL</label>
+        <label className='mr-2'>Trailer URL (youtube.com links accepted only)</label>
         <input
           placeholder="youtube.com"
           value={video.videoUrl}
@@ -153,7 +159,7 @@ class EditVideo extends Component {
           required
         />
         <br/>
-        <label className='mr-2'>Poster URL</label>
+        <label className='mr-2'>Poster URL (image source with extension)</label>
         <input
           placeholder="image.com/png"
           value={video.imageUrl}

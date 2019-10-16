@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 
 import apiConfig from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 
 class Video extends Component {
   constructor (props) {
@@ -16,9 +17,17 @@ class Video extends Component {
   }
 
   componentDidMount () {
+    const { alert } = this.state
+
     axios(`${apiConfig}/videos/${this.props.match.params.id}`)
       .then(res => this.setState({ video: res.data.video }))
-      .catch(console.error)
+      .catch(() => {
+        alert({
+          heading: 'Failed to retrieve video',
+          message: messages.getVideoFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   edit = () => {
@@ -28,12 +37,18 @@ class Video extends Component {
   destroy = () => {
     axios.delete(`${apiConfig}/videos/${this.state.video._id}`)
       .then(res => this.setState({ deleted: true }))
-      .catch(console.error)
+      .catch(() => {
+        alert({
+          heading: 'Failed to delete video',
+          message: messages.deleteVideoFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   render () {
     const { video, deleted } = this.state
-    if (!video) return <img src="https://media1.giphy.com/media/l4FGv5Ci0WIp8kYhO/giphy.gif"/>
+    if (!video) return <img src="https://cdn.dribbble.com/users/107759/screenshots/2436386/copper-loader.gif"/>
     if (deleted) return <Redirect to='/videos'/>
 
     return (

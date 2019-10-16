@@ -7,5 +7,8 @@ export default {
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   wrongUrlFormat: 'Trailer URL must be a youtube.com video, please try again.',
-  createVideoFailure: 'Failed to add/edit video to database. Check the fields and try again.'
+  createVideoFailure: 'Failed to add/edit video to database. Check the fields and try again.',
+  indexVideosFailure: 'Failed to index videos from database, check your connection and try again.',
+  getVideoFailure: 'Failed to retrieve video from database, check your connection and try again.',
+  deleteVideoFailure: 'Failed to delete video from database, check your connection and try again.'
 }

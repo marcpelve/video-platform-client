@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import apiUrl from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 
 class Videos extends Component {
   constructor (props) {
@@ -17,9 +18,17 @@ class Videos extends Component {
   }
 
   componentDidMount () {
+    const { alert } = this.props
+
     axios.get(`${apiUrl}/videos`)
       .then(res => this.setState({ videos: res.data.videos }))
-      .catch(console.error)
+      .catch(() => {
+        alert({
+          heading: 'Failed to index videos',
+          message: messages.indexVideosFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   render () {
@@ -32,7 +41,7 @@ class Videos extends Component {
       </Col>
     ))
 
-    if (!this.state.videos[0]) return <img src="https://media1.giphy.com/media/l4FGv5Ci0WIp8kYhO/giphy.gif"/>
+    if (!this.state.videos[0]) return <img src="https://cdn.dribbble.com/users/107759/screenshots/2436386/copper-loader.gif"/>
 
     return (
       <Fragment>
