@@ -1,20 +1,28 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+
+const layoutStyles = {
+  grid: {
+    display: 'grid',
+    gridTemplateRows: 'auto',
+    minHeight: '100vh'
+  },
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '2rem 0'
+  }
+}
 
 const Home = props => {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card&apos;s content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <div style={layoutStyles.grid}>
+      <main style={layoutStyles.main}>
+        <img style={{ maxWidth: '30vw' }} src="https://media2.giphy.com/media/l8C9PNnlpFpny/source.gif" />
+        <p>Sign in or sign up to get started!</p>
+      </main>
+    </div>
   )
 }
 
