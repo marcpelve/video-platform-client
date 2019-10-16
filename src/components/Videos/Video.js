@@ -53,15 +53,24 @@ class Video extends Component {
 
     return (
       <Fragment>
-        <h3>{video.title} ({video.year})</h3>
+        <h2>{video.title} ({video.year})</h2>
         <p>{video.category.join(', ')}</p>
         <p>{video.description}</p>
-        <iframe width="1100" height="619" src={`${this.state.video.videoUrl.replace('watch?v=', 'embed/')}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <div style={{ maxWidth: '100vw', height: '70vh' }}>
+          <iframe
+            width="100%"
+            height="100%"
+            src={`${this.state.video.videoUrl.replace('watch?v=', 'embed/')}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen>
+          </iframe>
+        </div>
         <br/>
-        <div style={{ marginTop: '1rem' }}>
-          <Link to={`/videos/${video._id}/edit`}><Button className='mr-2'>Update this Video</Button></Link>
-          <Button className='mr-2' onClick={this.destroy}>Delete this Video</Button>
-          <Link to="/videos"><Button>Back to all videos</Button></Link>
+        <div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <Link to="/videos"><Button variant='secondary' className='mr-2'>Back to all videos</Button></Link>
+          <Link to={`/videos/${video._id}/edit`}><Button variant='warning' className='mr-2'>Update this video</Button></Link>
+          <Button variant='danger' onClick={this.destroy}>Delete this video</Button>
         </div>
       </Fragment>
     )

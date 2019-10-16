@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 import messages from '../AutoDismissAlert/messages'
+
+import './videoForm.css'
 
 class CreateVideo extends Component {
   constructor (props) {
@@ -75,6 +78,7 @@ class CreateVideo extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label className='mr-2'>Title</label>
+        <br/>
         <input
           placeholder="Name"
           value={video.title}
@@ -84,6 +88,7 @@ class CreateVideo extends Component {
         />
         <br/>
         <label className='mr-2'>Date Released</label>
+        <br/>
         <input
           type="number"
           placeholder="2019"
@@ -94,6 +99,7 @@ class CreateVideo extends Component {
         />
         <br/>
         <label className='mr-2'>Description</label>
+        <br/>
         <input
           placeholder=""
           value={video.description}
@@ -103,6 +109,7 @@ class CreateVideo extends Component {
         />
         <br/>
         <label className='mr-2'>Trailer URL (youtube.com links accepted only)</label>
+        <br/>
         <input
           placeholder="youtube.com"
           value={video.videoUrl}
@@ -112,6 +119,7 @@ class CreateVideo extends Component {
         />
         <br/>
         <label className='mr-2'>Poster URL (image source with extension)</label>
+        <br/>
         <input
           placeholder="image.com/png"
           value={video.imageUrl}
@@ -138,10 +146,10 @@ class CreateVideo extends Component {
           <option value="Western">Western</option>
         </select>
         <br/>
-        <button type="submit">Submit</button>
         <Link to="/videos">
-          <button>Cancel</button>
+          <Button variant='danger' className='mr-2'>Cancel</Button>
         </Link>
+        <Button variant='success' type="submit">Submit</Button>
       </form>
     )
   }

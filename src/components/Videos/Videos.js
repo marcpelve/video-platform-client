@@ -33,9 +33,9 @@ class Videos extends Component {
 
   render () {
     const videos = this.state.videos.map(video => (
-      <Col md="2" key={video._id}>
-        <a href={`#videos/${video._id}`} >
-          <img style={{ height: '250px', width: '180px' }} src={video.imageUrl} />
+      <Col xs='12' sm='4' md='3' lg='3' xl='2' key={video._id} style={{ textAlign: 'center' }}>
+        <a style={{ height: '230px', display: 'inline-block' }} href={`#videos/${video._id}`} >
+          <img style={{ width: '100%', objectPosition: 'top', objectFit: 'cover', height: '100%' }} src={video.imageUrl} />
         </a>
         <p>{video.title} ({video.year})</p>
       </Col>
@@ -46,7 +46,7 @@ class Videos extends Component {
     return (
       <Fragment>
         <Container className="mt-4">
-          <Row>
+          <Row className='justify-content-center'>
             {this.state.videos ? videos : 'No videos'}
           </Row>
         </Container>
