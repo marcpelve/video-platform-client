@@ -13,7 +13,8 @@ class Favorites extends Component {
     super(props)
 
     this.state = {
-      videos: []
+      videos: [],
+      mounted: false
     }
   }
 
@@ -28,6 +29,7 @@ class Favorites extends Component {
       }
     })
       .then(res => this.setState({ videos: res.data.user.favorites }))
+      .then(() => this.setState({ mounted: true }))
       .catch(() => {
         alert({
           heading: 'Failed to index videos',
@@ -47,6 +49,7 @@ class Favorites extends Component {
       </Col>
     ))
 
+    if (!this.state.videos[0] && this.state.mounted) return (<h1>No favorites</h1>)
     if (!this.state.videos[0]) return <img src="https://cdn.dribbble.com/users/107759/screenshots/2436386/copper-loader.gif"/>
 
     return (
