@@ -6,6 +6,16 @@ The app is a video platform that provides the base structure to flesh out a more
 Currently it is a user driven site where a show/movie is posted with title, year, description, trailer URL from YouTube, a poster image and categories of genre the video belongs to. The index page shows you the list of videos that have been added and clicking one will bring you to the page with the previously mentioned information.
 
 
+![Videos listing](./readme-resources/video-platform-client.png)
+
+### Setup and local installation
+1. Clone repository
+2. `npm install` for dependencies
+3. Use links below to go to API repository, clone and install that
+4. `npm start` to run a localhost
+
+Make sure to change your `apiUrl` in `/src/apiConfig.js` if the intention is not running a localhost.
+
 ## Links
 **Deployed front-end client:** https://marcpelve.github.io/video-platform-client
 
