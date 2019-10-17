@@ -14,6 +14,7 @@ import Video from '../Videos/Video'
 import Videos from '../Videos/Videos'
 import CreateVideo from '../Videos/CreateVideo'
 import EditVideo from '../Videos/EditVideo'
+import Favorites from '../Videos/Favorites'
 
 class App extends Component {
   constructor () {
@@ -74,6 +75,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/videos/:id/edit' render={() => (
             <EditVideo alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/favorites' render={() => (
+            <Favorites alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>

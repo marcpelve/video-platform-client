@@ -10,5 +10,6 @@ export default {
   createVideoFailure: 'Failed to add/edit video to database. Check the fields and try again.',
   indexVideosFailure: 'Failed to index videos from database, check your connection and try again.',
   getVideoFailure: 'Failed to retrieve video from database, check your connection and try again.',
-  deleteVideoFailure: 'Failed to delete video from database, check your connection and try again.'
+  deleteVideoFailure: 'Failed to delete video from database, check your connection and try again.',
+  getLikedFailure: 'Failed to determine liked status from database, check your connection and reload the page.'
 }

@@ -71,58 +71,58 @@ Link to API resource and use for protected transactions
   - Open resource behind protected route, will require authorization token to access page
 
 
-  <table style="display:inline">
-  <th colspan="2" style="text-align:center">Videos</th>
-  <th colspan="2" style="text-align:center">User</th>
-  <tr>
-  <td>_id</td>
-  <td>MongoDB ObjectId</td>
-  <td>id</td>
-  <td>MongoDB ObjectId</td>
-  </tr>
-  <tr>
-  <td>title</td>
-  <td>string</td>
-  <td>email</td>
-  <td>string</td>
-  </tr>
-  <tr>
-  <td>year</td>
-  <td>number</td>
-  <td>password</td>
-  <td>string</td>
-  </tr>
-  <tr>
-  <td>description</td>
-  <td>string</td>
-  <td>password_confirmation</td>
-  <td>string</td>
-  </tr>
-  <tr>
-  <td>videoUrl</td>
-  <td>string</td>
-  <td>favorites</td>
-  <td>[ ref: Video ]</td>
-  </tr>
-  <tr>
-  <td>imageUrl</td>
-  <td>string</td>
-  <td></td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>category</td>
-  <td>[ string ] : enum</td>
-  <td></td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>timestamps</td>
-  <td>Mongoose default</td>
-  <td>timestamps</td>
-  <td>Mongoose default</td>
-  </tr>
-  </table>
+<table style="display:inline">
+<th colspan="2" style="text-align:center">Videos</th>
+<th colspan="2" style="text-align:center">User</th>
+<tr>
+<td>_id</td>
+<td>MongoDB ObjectId</td>
+<td>id</td>
+<td>MongoDB ObjectId</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>email</td>
+<td>string</td>
+</tr>
+<tr>
+<td>year</td>
+<td>number</td>
+<td>password</td>
+<td>string</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>password_confirmation</td>
+<td>string</td>
+</tr>
+<tr>
+<td>videoUrl</td>
+<td>string</td>
+<td>favorites</td>
+<td>[ ref: Video ]</td>
+</tr>
+<tr>
+<td>imageUrl</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>category</td>
+<td>[ string ] : enum</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timestamps</td>
+<td>Mongoose default</td>
+<td>timestamps</td>
+<td>Mongoose default</td>
+</tr>
+</table>
 
 ##### Data Display
 Built with React
@@ -149,7 +149,6 @@ Coming into this project, relatively new to React, would mean that I would have 
 One of these early realizations was the classic Netflix show/movie slider that scroll left to right on your Netflix homepage. Tackling this made me realize that whilst it's something I'm definitely going to tackle in the future, it shouldn't be a priority as creating a product under time constraints would require a more focused approach. This realization gave me a good perspective on time management for pieces of functionality in a project.
 
 #### Potential updates
-1. Implement `user` favorites, resource is already set up for it
 2. Create homepage with Netflix like slider sorted by category
 3. Create search bar and link to API search action for better data display
 3. Make requests to 3rd party API for more app functionality

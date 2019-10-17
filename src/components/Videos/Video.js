@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import Heart from './Heart'
 
 import apiConfig from '../../apiConfig'
 import messages from '../AutoDismissAlert/messages'
@@ -56,10 +57,9 @@ class Video extends Component {
         <h2>{video.title} ({video.year})</h2>
         <p>{video.category.join(', ')}</p>
         <p>{video.description}</p>
-        <div style={{ maxWidth: '100vw', height: '70vh' }}>
+        <div className='embed-responsive embed-responsive-16by9'>
           <iframe
-            width="100%"
-            height="100%"
+            className='embed-responsive-item'
             src={`${this.state.video.videoUrl.replace('watch?v=', 'embed/')}`}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -70,7 +70,8 @@ class Video extends Component {
         <div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <Link to="/videos"><Button variant='secondary' className='mr-2'>Back to all videos</Button></Link>
           <Link to={`/videos/${video._id}/edit`}><Button variant='warning' className='mr-2'>Update this video</Button></Link>
-          <Button variant='danger' onClick={this.destroy}>Delete this video</Button>
+          <Button variant='danger' className='mr-2' onClick={this.destroy}>Delete this video</Button>
+          <Heart user={this.props.user} alert={this.props.alert} videoId={this.state.video._id}/>
         </div>
       </Fragment>
     )
