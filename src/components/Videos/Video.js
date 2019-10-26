@@ -36,7 +36,15 @@ class Video extends Component {
   }
 
   destroy = () => {
-    axios.delete(`${apiConfig}/videos/${this.state.video._id}`)
+    const { alert, user } = this.props
+
+    axios({
+      url: `${apiConfig}/videos/${this.state.video._id}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
+    })
       .then(res => this.setState({ deleted: true }))
       .catch(() => {
         alert({
@@ -69,8 +77,8 @@ class Video extends Component {
         <br/>
         <div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <Link to="/videos"><Button variant='secondary' className='mr-2'>Back to all videos</Button></Link>
-          <Link to={`/videos/${video._id}/edit`}><Button variant='warning' className='mr-2'>Update this video</Button></Link>
-          <Button variant='danger' className='mr-2' onClick={this.destroy}>Delete this video</Button>
+          {(this.props.user._id === this.state.video.owner) && <Link to={`/videos/${video._id}/edit`}><Button variant='warning' className='mr-2'>Update this video</Button></Link>}
+          {(this.props.user._id === this.state.video.owner) && <Button variant='danger' className='mr-2' onClick={this.destroy}>Delete this video</Button>}
           <Heart user={this.props.user} alert={this.props.alert} videoId={this.state.video._id}/>
         </div>
       </Fragment>

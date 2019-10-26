@@ -90,7 +90,7 @@ class EditVideo extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    const { alert } = this.props
+    const { alert, user } = this.props
 
     if (!this.state.video.videoUrl.includes('youtube.com')) {
       alert({
@@ -103,6 +103,9 @@ class EditVideo extends Component {
       axios({
         url: `${apiUrl}/videos/${this.props.match.params.id}`,
         method: 'PATCH',
+        headers: {
+          'Authorization': `Token token=${user.token}`
+        },
         data: { video: this.state.video }
       })
         .then(() => this.setState({ updated: true }))

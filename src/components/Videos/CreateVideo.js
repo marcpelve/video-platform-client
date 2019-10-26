@@ -48,7 +48,7 @@ class CreateVideo extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    const { alert } = this.props
+    const { alert, user } = this.props
 
     if (!this.state.video.videoUrl.includes('youtube.com')) {
       alert({
@@ -58,7 +58,14 @@ class CreateVideo extends Component {
       })
       this.setState({ video: { ...this.state.video, videoUrl: '' } })
     } else {
-      axios.post(`${apiUrl}/videos`, { video: this.state.video })
+      axios({
+        url: `${apiUrl}/videos`,
+        method: 'POST',
+        headers: {
+          'Authorization': `Token token=${user.token}`
+        },
+        data: { video: this.state.video }
+      })
         .then(res => this.setState({ redirectId: res.data.video._id }))
         .catch(() => {
           alert({
