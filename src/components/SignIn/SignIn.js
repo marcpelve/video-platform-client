@@ -74,7 +74,7 @@ class SignIn extends Component {
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <p>Looking to test the site? <Button type="button" onClick={this.testSignIn}>Sign in as test user</Button></p>
+          <p>Looking to test the site? <Button variant="outline-secondary" type="button" onClick={this.testSignIn}>Sign in as test user</Button></p>
           <h3>Sign In</h3>
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email">
