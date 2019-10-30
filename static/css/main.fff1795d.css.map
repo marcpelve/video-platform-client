@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Videos/videoForm.css"],"names":[],"mappings":"AAAA,kBACE,oBAAsB","file":"static/css/main.fff1795d.css","sourcesContent":["form > input, select {\n  margin-bottom: 1.5rem;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/components/Videos/videoForm.css"],"sourceRoot":""}
