@@ -44,12 +44,37 @@ class SignIn extends Component {
       })
   }
 
+  testSignIn = event => {
+    const { alert, history, setUser } = this.props
+
+    signIn({
+      email: 'test@test.com',
+      password: 'test123'
+    })
+      .then(res => setUser(res.data.user))
+      .then(() => alert({
+        heading: 'Sign In Success',
+        message: messages.signInSuccess,
+        variant: 'success'
+      }))
+      .then(() => history.push('/videos'))
+      .catch(() => {
+        this.setState({ email: '', password: '' })
+        alert({
+          heading: 'Sign In Failed',
+          message: messages.signInFailure,
+          variant: 'danger'
+        })
+      })
+  }
+
   render () {
     const { email, password } = this.state
 
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
+          <p>Looking to test the site? <Button type="button" onClick={this.testSignIn}>Sign in as test user</Button></p>
           <h3>Sign In</h3>
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email">

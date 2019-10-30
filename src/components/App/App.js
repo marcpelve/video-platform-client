@@ -9,7 +9,7 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
-import Home from '../Videos/Home'
+// import Home from '../Videos/Home'
 import Video from '../Videos/Video'
 import Videos from '../Videos/Videos'
 import CreateVideo from '../Videos/CreateVideo'
@@ -62,7 +62,7 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
           <Route user={user} exact path='/' render={() => (
-            <Home alert={this.alert} user={user} />
+            <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} exact path='/videos' render={() => (
             <Videos alert={this.alert} user={user} />
